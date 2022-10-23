@@ -1,25 +1,23 @@
+import React, {useState} from "react";
+
+import SCalendar from "./components/SCalendar";
+import AddEvent from "./components/AddEvent";
+import SCProvider from "./components/SCContext";
+
 import './App.css';
-import 'react-calendar/dist/Calendar.css';
-import {MonthView} from "react-calendar";
-import {useState} from "react";
 
+const App = () => {
 
-function App() {
-  const [value, onChange] = useState(new Date());
+  const [date, setDate] = useState(new Date())
 
   return (
     <div className="App">
-      <div>
-        <MonthView
-          activeStartDate={new Date()}
-          wee
-          tileContent={
-            ({date, view}) => view === 'month' && date.getDay() === 0 ?
-              <p>It's Sunday!</p> : null
-          }/>
-      </div>
+      <SCProvider>
+        <AddEvent selectedDate={date}/>
+        <SCalendar selectedDate={date} selectDate={setDate}/>
+      </SCProvider>
     </div>
   );
-}
+};
 
 export default App;
