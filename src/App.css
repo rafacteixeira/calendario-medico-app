@@ -1,7 +1,18 @@
-.App {
-    padding-left: 20px;
-}
 
 .inputWrapper {
     width: 300px;
+    padding-left: 20px;
+}
+
+.react-calendar {
+    width: 500px;
+}
+
+.calendarTile {
+    height: 100px;
+    width: 100px;
+}
+
+.save-input {
+    margin: 15px;
 }
