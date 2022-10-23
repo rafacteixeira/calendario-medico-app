@@ -16,8 +16,8 @@ const AddEvent = ({selectedDate}) => {
       Type: type,
       Watch: watch
     }
-    console.log("generated event", event)
-    setScContext([...scContext, event])
+    localStorage.setItem("events", JSON.stringify([...scContext, event]))
+    setScContext(JSON.parse(localStorage.getItem('events')))
   }
 
   const clearDay = () => {
@@ -27,7 +27,8 @@ const AddEvent = ({selectedDate}) => {
 
       return !mCurrDate.isSame(mSelectedDate)
     })
-    setScContext([...newContext])
+    localStorage.setItem("events", JSON.stringify([...newContext]))
+    setScContext(JSON.parse(localStorage.getItem('events')))
   }
 
   let formattedDate = moment(selectedDate).format('DD/MM/YYYY');

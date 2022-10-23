@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
 import {SCContext} from "./SCContext";
@@ -7,7 +7,16 @@ import DayEvents from "./DayEvents";
 import '../Calendar.css'
 
 const SCalendar = ({selectedDate, selectDate}) => {
-  const [scContext,] = useContext(SCContext)
+  const [scContext, setScContext] = useContext(SCContext)
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('events'));
+    if (items) {
+      setScContext(items)
+    }
+    // eslint-disable-next-line
+  }, []);
+
 
   function filterDateEvents(calendarDate) {
     let events = [];
