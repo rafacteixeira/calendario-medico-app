@@ -5,6 +5,7 @@ import AddEvent from "./components/AddEvent";
 import SCProvider from "./components/SCContext";
 
 import './App.css';
+import ColorDescriptor from "./components/ColorDescriptor";
 
 const App = () => {
 
@@ -14,6 +15,7 @@ const App = () => {
     <div className="App">
       <SCProvider>
         <AddEvent selectedDate={date}/>
+        <ColorDescriptor/>
         <SCalendar selectedDate={date} selectDate={setDate}/>
       </SCProvider>
     </div>

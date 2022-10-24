@@ -10,7 +10,9 @@ const DayEvent = ({events, watch}) => {
       {filtered.map(
         (e) => {
           return (
-            <div key={e.Date + e.Type + e.Watch + Math.random()} className={e.Watch}>
+            <div
+              key={e.Date + e.Type + e.Watch + Math.random()}
+              className={e.Type !== 'PosP' ? e.Type + '-' + e.Watch : e.Type}>
               <label className='eventLabel'>{e.Type}</label>
               <br/>
             </div>

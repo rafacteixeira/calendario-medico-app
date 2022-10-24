@@ -12,9 +12,48 @@
 }
 
 .noite {
+    background-color: palevioletred;
+}
+
+.Enf-manha {
+    background-color: green;
+}
+
+.Enf-tarde {
+    background-color: lightgreen;
+}
+
+.Enf-noite {
+    background-color: limegreen;
+}
+
+.Amb-manha {
+    background-color: lightcoral;
+}
+
+.Amb-tarde {
     background-color: orange;
 }
 
+.Amb-noite {
+    background-color: orangered;
+}
+
+.Pla-manha {
+    background-color: deepskyblue;
+}
+
+.Pla-tarde {
+    background-color: deepskyblue;
+}
+
+.Pla-noite {
+    background-color: cadetblue;
+}
+
+.PosP {
+    background-color: mediumpurple;
+}
 
 .dailyEventList {
     align-content: space-around;
