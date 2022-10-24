@@ -80,9 +80,9 @@ const AddEvent = ({selectedDate}) => {
           />
         </div>
         <br/>
-        <button className="button save-input" type="button" onClick={() => addEvent()}>Salvar
-        </button>
         <button className="button save-input" type="button" onClick={() => clearDay()}>Limpar Dia
+        </button>
+        <button className="button save-input" type="button" onClick={() => addEvent()}>Salvar
         </button>
       </form>
     </div>
