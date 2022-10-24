@@ -13,7 +13,7 @@ const DayEvent = ({events, watch}) => {
             <div
               key={e.Date + e.Type + e.Watch + Math.random()}
               className={e.Type !== 'PosP' ? e.Type + '-' + e.Watch : e.Type}>
-              <label className='eventLabel'>{e.Type}</label>
+              <label className='eventLabels'>{e.Type}</label>
               <br/>
             </div>
           )
