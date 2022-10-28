@@ -1,8 +1,8 @@
 import {useContext, useState} from "react";
-import {SCContext} from "./SCContext";
+import {SCContext} from "../calendar-context/SCContext";
 import moment from "moment";
 import DropdownList from "react-widgets/DropdownList";
-import "../AddEvent.css";
+import "./react-widgets-copy.css";
 
 const AddEvent = ({selectedDate}) => {
   const [scContext, setScContext] = useContext(SCContext)

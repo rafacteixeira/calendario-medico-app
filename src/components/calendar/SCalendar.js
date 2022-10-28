@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
-import {SCContext} from "./SCContext";
+import {SCContext} from "../calendar-context/SCContext";
 import 'react-calendar/dist/Calendar.css';
-import DayEvents from "./DayEvents";
-import '../Calendar.css'
+import DayEvents from "../day-events/DayEvents";
+import './Calendar.css'
 
 const SCalendar = ({selectedDate, selectDate}) => {
   const [scContext, setScContext] = useContext(SCContext)

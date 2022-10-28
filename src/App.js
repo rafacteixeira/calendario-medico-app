@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 
-import SCalendar from "./components/SCalendar";
-import AddEvent from "./components/AddEvent";
-import SCProvider from "./components/SCContext";
+import SCalendar from "./components/calendar/SCalendar";
+import AddEvent from "./components/add-event/AddEvent";
+import SCProvider from "./components/calendar-context/SCContext";
+import ColorDescriptor from "./components/color-description/ColorDescriptor";
 
 import './App.css';
-import ColorDescriptor from "./components/ColorDescriptor";
 
 const App = () => {
 

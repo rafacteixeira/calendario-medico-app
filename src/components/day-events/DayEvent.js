@@ -1,5 +1,5 @@
 import React from "react";
-import '../DayEvent.css';
+import './DayEvent.css';
 
 const DayEvent = ({events, watch}) => {
 

@@ -1,6 +1,6 @@
 import React from "react";
 import DayEvent from "./DayEvent";
-import '../DayEvent.css'
+import './DayEvent.css'
 
 const DayEvents = ({events}) => {
   return (
