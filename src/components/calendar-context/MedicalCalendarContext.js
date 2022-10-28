@@ -1,13 +1,13 @@
 import {createContext, useState} from "react";
 
-export const SCContext = createContext()
+export const MedicalCalendarContext = createContext()
 
 const SCProvider = (props) => {
   const [data, setData] = useState([])
   return (
-    <SCContext.Provider value={[data, setData]}>
+    <MedicalCalendarContext.Provider value={[data, setData]}>
       {props.children}
-    </SCContext.Provider>
+    </MedicalCalendarContext.Provider>
   )
 }
 

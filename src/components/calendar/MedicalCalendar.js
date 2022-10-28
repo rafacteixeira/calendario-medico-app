@@ -1,18 +1,18 @@
 import React, {useContext, useEffect} from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
-import {SCContext} from "../calendar-context/SCContext";
+import {MedicalCalendarContext} from "../calendar-context/MedicalCalendarContext";
 import 'react-calendar/dist/Calendar.css';
 import DayEvents from "../day-events/DayEvents";
 import './Calendar.css'
 
-const SCalendar = ({selectedDate, selectDate}) => {
-  const [scContext, setScContext] = useContext(SCContext)
+const MedicalCalendar = ({selectedDate, selectDate}) => {
+  const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('events'));
     if (items) {
-      setScContext(items)
+      setMcContext(items)
     }
     // eslint-disable-next-line
   }, []);
@@ -20,7 +20,7 @@ const SCalendar = ({selectedDate, selectDate}) => {
 
   function filterDateEvents(calendarDate) {
     let events = [];
-    scContext.forEach((current) => {
+    mcContext.forEach((current) => {
       let eventDate = moment(current.Date);
       if (calendarDate.isSame(eventDate, 'day')) {
         events.push(current)
@@ -56,4 +56,4 @@ const SCalendar = ({selectedDate, selectDate}) => {
   );
 };
 
-export default SCalendar;
+export default MedicalCalendar;

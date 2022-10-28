@@ -1,16 +1,16 @@
 import {useContext, useState} from "react";
-import {SCContext} from "../calendar-context/SCContext";
+import {MedicalCalendarContext} from "../calendar-context/MedicalCalendarContext";
 import moment from "moment";
 import DropdownList from "react-widgets/DropdownList";
 import "./react-widgets-copy.css";
 
 const AddEvent = ({selectedDate}) => {
-  const [scContext, setScContext] = useContext(SCContext)
+  const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
   const [type, setType] = useState("")
   const [watch, setWatch] = useState("")
 
   function clearMorningEvents() {
-    return scContext.filter((current) => {
+    return mcContext.filter((current) => {
         let mCurrDate = moment(current.Date)
         let mSelectedDate = moment(selectedDate)
         return !mCurrDate.isSame(mSelectedDate) || current.Watch !== 'manha'
@@ -28,22 +28,22 @@ const AddEvent = ({selectedDate}) => {
     if (event.Type === 'PosP') {
       events = clearMorningEvents()
     } else {
-      events = [...scContext]
+      events = [...mcContext]
     }
 
     localStorage.setItem("events", JSON.stringify([...events, event]))
-    setScContext(JSON.parse(localStorage.getItem('events')))
+    setMcContext(JSON.parse(localStorage.getItem('events')))
   }
 
   const clearDay = () => {
-    let newContext = scContext.filter((current) => {
+    let newContext = mcContext.filter((current) => {
       let mCurrDate = moment(current.Date)
       let mSelectedDate = moment(selectedDate)
 
       return !mCurrDate.isSame(mSelectedDate)
     })
     localStorage.setItem("events", JSON.stringify([...newContext]))
-    setScContext(JSON.parse(localStorage.getItem('events')))
+    setMcContext(JSON.parse(localStorage.getItem('events')))
   }
 
   let formattedDate = moment(selectedDate).format('DD/MM/YYYY');
