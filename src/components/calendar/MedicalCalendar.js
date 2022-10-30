@@ -1,9 +1,9 @@
 import React, {useContext, useEffect} from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
-import {MedicalCalendarContext} from "../calendar-context/MedicalCalendarContext";
+import {MedicalCalendarContext} from "../../context/calendar-context/MedicalCalendarContext";
 import 'react-calendar/dist/Calendar.css';
-import DayEvents from "../day-events/DayEvents";
+import EventBlock from "../day-events/EventBlock";
 import './Calendar.css'
 
 const MedicalCalendar = ({selectedDate, selectDate}) => {
@@ -35,7 +35,7 @@ const MedicalCalendar = ({selectedDate, selectDate}) => {
       const currentDate = moment(date);
       let dayEvents = filterDateEvents(currentDate)
       if (dayEvents && dayEvents.length > 0) {
-        return <DayEvents events={dayEvents}/>;
+        return <EventBlock events={dayEvents}/>;
       }
     }
   }

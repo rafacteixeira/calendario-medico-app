@@ -1,0 +1,15 @@
+.inlineDiv {
+    display: inline-flex;
+}
+
+.labelWidth {
+    width: 160px;
+    border: 1px antiquewhite solid;
+}
+
+.eventLabels {
+    color: black;
+    font-weight: bold;
+    width: 170px;
+    margin-bottom: 15px;
+}

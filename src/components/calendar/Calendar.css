@@ -1,3 +1,8 @@
 .calendarTile {
-    width: 50px;
+    height: 100px;
+    width: 100px;
+}
+
+.react-calendar {
+    width: 500px;
 }

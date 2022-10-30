@@ -1,32 +1,3 @@
-.eventLabels {
-    color: black;
-    font-weight: bold;
-    width: 170px;
-    margin-bottom: 15px;
-}
-
-.inlineDiv {
-    display: inline-flex;
-
-}
-
-.labelWidth {
-    width: 160px;
-    border: 1px antiquewhite solid;
-}
-
-.manha {
-    background-color: lightseagreen;
-}
-
-.tarde {
-    background-color: coral;
-}
-
-.noite {
-    background-color: palevioletred;
-}
-
 .Enf-manha {
     background-color: green;
 }
@@ -65,8 +36,4 @@
 
 .PosP {
     background-color: mediumpurple;
-}
-
-.dailyEventList {
-    align-content: space-around;
 }

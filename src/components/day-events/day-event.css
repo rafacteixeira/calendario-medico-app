@@ -1,0 +1,10 @@
+.eventLabels {
+    color: black;
+    font-weight: bold;
+    width: 170px;
+    margin-bottom: 15px;
+}
+
+.dailyEventList {
+    align-content: space-around;
+}

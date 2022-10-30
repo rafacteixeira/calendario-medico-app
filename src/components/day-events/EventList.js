@@ -1,7 +1,7 @@
 import React from "react";
-import './DayEvent.css';
+import './day-event.css';
 
-const DayEvent = ({events, watch}) => {
+const EventList = ({events, watch}) => {
 
   let filtered = events.filter((e) => e.Watch === watch)
 
@@ -22,4 +22,4 @@ const DayEvent = ({events, watch}) => {
     </div>
   )
 }
-export default DayEvent
+export default EventList

@@ -1,4 +1,5 @@
-import '../day-events/DayEvent.css'
+import './color-description.css'
+import '../day-events/event-colors.css'
 
 const ColorDescriptor = () => {
   return (
