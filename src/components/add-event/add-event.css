@@ -1,19 +1,36 @@
-.inputWrapper {
-    width: 300px;
-    padding-left: 20px;
+.addForm{
+    margin: 0 auto 0 auto;
+}
+
+.actionsCentered{
+    margin: 0 auto 0 auto;
+    width: 100%;
 }
 
 .save-input {
     margin: 15px;
+    background-color: darkslateblue; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.clear-input {
+    margin: 15px;
+    background-color: lightslategrey; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
 input {
     width: 100%;
-}
-
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
 }

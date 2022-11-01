@@ -5,6 +5,8 @@ import AddEvent from "./components/add-event/AddEvent";
 import SCProvider from "./context/calendar-context/MedicalCalendarContext";
 import ColorDescriptor from "./components/color-description/ColorDescriptor";
 
+import './App.css'
+
 const App = () => {
 
   const [date, setDate] = useState(new Date())

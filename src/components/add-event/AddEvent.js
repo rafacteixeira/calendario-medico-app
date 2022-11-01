@@ -64,7 +64,7 @@ const AddEvent = ({selectedDate}) => {
 
   return (
     <div>
-      <form>
+      <form className="addForm">
         <div className="inputWrapper">
           <label>Data: {formattedDate} </label>
           <br/>
@@ -97,10 +97,12 @@ const AddEvent = ({selectedDate}) => {
           />
         </div>
         <br/>
-        <button className="button save-input" type="button" onClick={() => clearDay()}>Limpar Dia
-        </button>
-        <button className="button save-input" type="button" onClick={() => addEvent()}>Salvar
-        </button>
+        <div className="actionsCentered">
+          <button className="button clear-input" type="button" onClick={() => clearDay()}>Limpar Dia
+          </button>
+          <button className="button save-input" type="button" onClick={() => addEvent()}>Salvar
+          </button>
+        </div>
       </form>
     </div>
   )

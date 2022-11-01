@@ -3,7 +3,7 @@ import '../day-events/event-colors.css'
 
 const ColorDescriptor = () => {
   return (
-    <div className='eventLabels'>
+    <div className='eventLabels labelsCentered'>
       <div className="inlineDiv">
         <div className='Enf-manha labelWidth'>Enfermaria Manhã</div>
         <div className='Enf-tarde labelWidth'>Enfermaria Tarde</div>

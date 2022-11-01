@@ -3,13 +3,18 @@
 }
 
 .labelWidth {
-    width: 160px;
+    width: 165px;
     border: 1px antiquewhite solid;
 }
 
 .eventLabels {
     color: black;
     font-weight: bold;
-    width: 170px;
     margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.labelsCentered{
+    margin: 0 auto 0 auto;
 }
