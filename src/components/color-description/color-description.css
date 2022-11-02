@@ -1,5 +1,17 @@
-.inlineDiv {
+.typeBlock{
     display: inline-flex;
+    width: 100%;
+}
+
+.typeDiv{
+    width: 40%;
+    padding: 0;
+    margin: auto;
+}
+
+.inlineDiv {
+    display: inline-list-item;
+    width: 60%;
 }
 
 .labelWidth {
@@ -13,8 +25,4 @@
     margin-bottom: 15px;
     text-align: center;
     width: 100%;
-}
-
-.labelsCentered{
-    margin: 0 auto 0 auto;
 }

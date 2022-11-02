@@ -6,6 +6,7 @@ import SCProvider from "./context/calendar-context/MedicalCalendarContext";
 import ColorDescriptor from "./components/color-description/ColorDescriptor";
 
 import './App.css'
+import Collapsible from "./components/collapsible/Colapsible";
 
 const App = () => {
 
@@ -15,7 +16,7 @@ const App = () => {
     <div className="App">
       <SCProvider>
         <AddEvent selectedDate={date}/>
-        <ColorDescriptor/>
+        <Collapsible/>
         <MedicalCalendar selectedDate={date} selectDate={setDate}/>
       </SCProvider>
     </div>
