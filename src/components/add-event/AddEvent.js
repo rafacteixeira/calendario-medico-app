@@ -66,9 +66,9 @@ const AddEvent = ({selectedDate}) => {
     <div>
       <form className="addForm">
         <div className="inputWrapper">
-          <label>Data: {formattedDate} </label>
+          <b><label>Data: {formattedDate} </label></b>
           <br/>
-          <b><label>Altere a data clicando no calendário abaixo</label></b>
+          <label>Altere a data clicando no calendário abaixo</label>
         </div>
         <br/>
         <div className="inputWrapper">
