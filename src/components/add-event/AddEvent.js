@@ -54,6 +54,7 @@ const AddEvent = ({selectedDate}) => {
     {id: 'Amb', name: 'Ambulatório'},
     {id: 'Pla', name: 'Plantão'},
     {id: 'PosP', name: 'Pós Plantão'},
+    {id: 'Aula', name: 'Aula'},
   ];
 
   let watches = [

@@ -33,6 +33,12 @@ const ColorDescriptor = () => {
           <div className='PosP labelWidth'>Pós Plantão</div>
         </div>
       </div>
+      <div className="typeBlock">
+        <div className="typeDiv">Aula</div>
+        <div className="inlineDiv">
+          <div className='Aula labelWidth'>Aula</div>
+        </div>
+      </div>
     </div>
   )
 }
