@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import MedicalCalendar from "./components/calendar/MedicalCalendar";
 import AddEvent from "./components/add-event/AddEvent";
-import SCProvider from "./context/calendar-context/MedicalCalendarContext";
+import MedicalCalendarContextProvider from "./context/calendar-context/MedicalCalendarContext";
 import Collapsible from "./components/collapsible/Colapsible";
 
 import './App.css'
@@ -13,11 +13,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <SCProvider>
+      <MedicalCalendarContextProvider>
         <AddEvent selectedDate={date}/>
         <Collapsible/>
         <MedicalCalendar selectedDate={date} selectDate={setDate}/>
-      </SCProvider>
+      </MedicalCalendarContextProvider>
     </div>
   );
 };
