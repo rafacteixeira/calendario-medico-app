@@ -70,7 +70,6 @@ const AddEvent = ({selectedDate}) => {
           <br/>
           <label>Altere a data clicando no calendário abaixo</label>
         </div>
-        <br/>
         <div className="inputWrapper">
           <label>Tipo:</label>
           <DropdownList
@@ -83,7 +82,6 @@ const AddEvent = ({selectedDate}) => {
             }}
           />
         </div>
-        <br/>
         <div className="inputWrapper">
           <label>Turno:</label>
           <DropdownList
@@ -96,7 +94,6 @@ const AddEvent = ({selectedDate}) => {
             }}
           />
         </div>
-        <br/>
         <div className="actionsCentered">
           <button className="button clear-input" type="button" onClick={() => clearDay()}>Limpar Dia
           </button>

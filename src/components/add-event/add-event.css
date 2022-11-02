@@ -34,3 +34,7 @@
 input {
     width: 100%;
 }
+
+.inputWrapper {
+    padding-top: 1rem;
+}
