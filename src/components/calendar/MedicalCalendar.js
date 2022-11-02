@@ -35,20 +35,8 @@ const MedicalCalendar = ({selectedDate, selectDate}) => {
       const currentDate = moment(date);
       let dayEvents = filterDateEvents(currentDate)
       if (dayEvents && dayEvents.length > 0) {
-        return <EventBlock events={dayEvents} deleteEvent={deleteEvent}/>;
+        return <EventBlock events={dayEvents}/>;
       }
-    }
-  }
-
-  function deleteEvent(event){
-    let del = window.confirm(`Deseja remover o evento ${event.Type}?`)
-    console.log(del)
-    if (del) {
-      let filtered = mcContext.filter(
-        (e) => (e.Date !== event.Date) || (e.Type !== event.Type && e.Watch !== event.watch)
-      );
-      setMcContext(filtered)
-      localStorage.setItem("events", JSON.stringify([...filtered]))
     }
   }
 
