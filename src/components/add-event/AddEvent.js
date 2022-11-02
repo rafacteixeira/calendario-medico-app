@@ -2,7 +2,7 @@ import {useContext, useState} from "react";
 import {MedicalCalendarContext} from "../../context/calendar-context/MedicalCalendarContext";
 import moment from "moment";
 import DropdownList from "react-widgets/DropdownList";
-import "./react-widgets-copy.css";
+import "react-widgets/styles.css";
 import "./add-event.css"
 
 const AddEvent = ({selectedDate}) => {

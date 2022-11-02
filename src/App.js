@@ -3,10 +3,9 @@ import React, {useState} from "react";
 import MedicalCalendar from "./components/calendar/MedicalCalendar";
 import AddEvent from "./components/add-event/AddEvent";
 import SCProvider from "./context/calendar-context/MedicalCalendarContext";
-import ColorDescriptor from "./components/color-description/ColorDescriptor";
+import Collapsible from "./components/collapsible/Colapsible";
 
 import './App.css'
-import Collapsible from "./components/collapsible/Colapsible";
 
 const App = () => {
 
