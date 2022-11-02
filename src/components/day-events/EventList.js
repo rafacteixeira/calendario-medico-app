@@ -1,27 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import './day-event.css';
 
-const EventList = ({events, watch}) => {
-  const [localEvents, setLocalEvents] = useState([]);
+const EventList = ({events, watch, deleteEvent}) => {
 
-  useEffect(
-    () => {
-      setLocalEvents(events.filter((e) => e.Watch === watch))
-    }, []
-  )
-
-  function deleteEvent(event){
-    let del = window.confirm(`Deseja remover o evento ${event.Type}?`)
-    console.log(del)
-    if (del) {
-      setLocalEvents(localEvents.filter((e) => e.Type !== event.Type && e.Watch !== event.watch))
-    }
-  }
+  let filtered = events.filter((e) => e.Watch === watch)
 
   return (
     <div>
-      {localEvents &&
-        localEvents.map(
+      {filtered.map(
         (e) => {
           return (
             <div

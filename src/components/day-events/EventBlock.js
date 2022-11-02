@@ -2,12 +2,12 @@ import React from "react";
 import EventList from "./EventList";
 import './day-event.css'
 
-const EventBlock = ({events}) => {
+const EventBlock = ({events, deleteEvent}) => {
   return (
     <div className='dailyEventList'>
-      <EventList events={events} watch='manha'/>
-      <EventList events={events} watch='tarde'/>
-      <EventList events={events} watch='noite'/>
+      <EventList events={events} watch='manha' deleteEvent={deleteEvent}/>
+      <EventList events={events} watch='tarde' deleteEvent={deleteEvent}/>
+      <EventList events={events} watch='noite' deleteEvent={deleteEvent}/>
     </div>
   )
 }
