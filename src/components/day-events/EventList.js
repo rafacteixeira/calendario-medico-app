@@ -10,7 +10,6 @@ const EventList = ({events, watch}) => {
 
   function deleteEvent(event){
     let del = window.confirm(`Deseja remover o evento ${event.Type}?`)
-    console.log(del)
     if (del) {
       let filtered = mcContext.filter(
         (e) => (e.Date !== event.Date) || (e.Type !== event.Type && e.Watch !== event.Watch)

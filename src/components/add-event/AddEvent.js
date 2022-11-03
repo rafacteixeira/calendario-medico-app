@@ -6,9 +6,25 @@ import "react-widgets/styles.css";
 import "./add-event.css"
 
 const AddEvent = ({selectedDate}) => {
+
+  let types = [
+    {id: 'Enf', name: 'Enfermaria'},
+    {id: 'Amb', name: 'Ambulatório'},
+    {id: 'Pla', name: 'Plantão'},
+    {id: 'PosP', name: 'Pós Plantão'},
+    {id: 'Aula', name: 'Aula'},
+  ];
+
+  let watchList = [
+    {id: 'manha', name: 'Manhã'},
+    {id: 'tarde', name: 'Tarde'},
+    {id: 'noite', name: 'Noite'},
+  ];
+
   const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
   const [type, setType] = useState("")
   const [watch, setWatch] = useState("")
+  const [watches, setWatches] = useState(...watchList)
 
   function clearMorningEvents() {
     return mcContext.filter((current) => {
@@ -49,19 +65,22 @@ const AddEvent = ({selectedDate}) => {
 
   let formattedDate = moment(selectedDate).format('DD/MM/YYYY');
 
-  let types = [
-    {id: 'Enf', name: 'Enfermaria'},
-    {id: 'Amb', name: 'Ambulatório'},
-    {id: 'Pla', name: 'Plantão'},
-    {id: 'PosP', name: 'Pós Plantão'},
-    {id: 'Aula', name: 'Aula'},
-  ];
+  const filterWatches = (typeId) => {
+    let list = []
+    if( typeId === 'Enf') {
+      list.push({id: 'manha', name: 'Manhã'})
+    } else if (typeId === 'Amb') {
+      list.push({id: 'manha', name: 'Manhã'},{id: 'tarde', name: 'Tarde'})
+    } else if (typeId === 'Aula') {
+      list.push({id: 'manha', name: 'Manhã'})
+    } else if (typeId === 'Pla') {
+      list.push({id: 'manha', name: 'Manhã'},{id: 'noite', name: 'Noite'})
+    } else if (typeId === 'PosP') {
+      list.push({id: 'manha', name: 'Manhã'})
+    }
+    setWatches(list)
+  }
 
-  let watches = [
-    {id: 'manha', name: 'Manhã'},
-    {id: 'tarde', name: 'Tarde'},
-    {id: 'noite', name: 'Noite'},
-  ];
 
   return (
     <div>
@@ -80,6 +99,7 @@ const AddEvent = ({selectedDate}) => {
             textField='name'
             onChange={(newValue) => {
               setType(newValue.id)
+              filterWatches(newValue.id)
             }}
           />
         </div>

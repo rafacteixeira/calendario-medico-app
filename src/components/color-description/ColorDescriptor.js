@@ -7,9 +7,7 @@ const ColorDescriptor = () => {
       <div className="typeBlock">
       <div className="typeDiv">Enfermaria</div>
       <div className="inlineDiv">
-        <div className='Enf-manha labelWidth'>Manhã</div>
-        <div className='Enf-tarde labelWidth'>Tarde</div>
-        <div className='Enf-noite labelWidth'>Noite</div>
+        <div className='Enf-manha labelWidth'>Enfermaria</div>
       </div>
       </div>
       <div className="typeBlock">
@@ -17,7 +15,6 @@ const ColorDescriptor = () => {
         <div className="inlineDiv">
           <div className='Amb-manha labelWidth'>Manhã</div>
           <div className='Amb-tarde labelWidth'>Tarde</div>
-          <div className='Amb-noite labelWidth'>Noite</div>
         </div>
       </div>
       <div className="typeBlock">

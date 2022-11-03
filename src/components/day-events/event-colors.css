@@ -2,14 +2,6 @@
     background-color: green;
 }
 
-.Enf-tarde {
-    background-color: lightgreen;
-}
-
-.Enf-noite {
-    background-color: limegreen;
-}
-
 .Amb-manha {
     background-color: lightcoral;
 }
@@ -18,15 +10,7 @@
     background-color: orange;
 }
 
-.Amb-noite {
-    background-color: orangered;
-}
-
 .Pla-manha {
-    background-color: deepskyblue;
-}
-
-.Pla-tarde {
     background-color: deepskyblue;
 }
 
@@ -39,5 +23,5 @@
 }
 
 .Aula {
-    background-color: darkgray;
+    background-color: orangered;
 }
