@@ -15,16 +15,11 @@ const AddEvent = ({selectedDate}) => {
     {id: 'Aula', name: 'Aula'},
   ];
 
-  let watchList = [
-    {id: 'manha', name: 'Manhã'},
-    {id: 'tarde', name: 'Tarde'},
-    {id: 'noite', name: 'Noite'},
-  ];
 
   const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
   const [type, setType] = useState("")
   const [watch, setWatch] = useState("")
-  const [watches, setWatches] = useState(...watchList)
+  const [watches, setWatches] = useState([])
 
   function clearMorningEvents() {
     return mcContext.filter((current) => {

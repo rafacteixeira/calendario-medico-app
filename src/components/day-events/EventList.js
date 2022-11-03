@@ -12,7 +12,9 @@ const EventList = ({events, watch}) => {
     let del = window.confirm(`Deseja remover o evento ${event.Type}?`)
     if (del) {
       let filtered = mcContext.filter(
-        (e) => (e.Date !== event.Date) || (e.Type !== event.Type && e.Watch !== event.Watch)
+        (e) => {
+          return !(e.Date === event.Date && e.Type === event.Type && e.Watch === event.Watch);
+        }
       );
       setMcContext(filtered)
       localStorage.setItem("events", JSON.stringify([...filtered]))
