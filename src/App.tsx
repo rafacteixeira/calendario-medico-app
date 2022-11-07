@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-
-import MedicalCalendar from "./components/calendar/MedicalCalendar";
 import AddEvent from "./components/add-event/AddEvent";
 import MedicalCalendarContextProvider from "./context/calendar-context/MedicalCalendarContext";
 import Collapsible from "./components/collapsible/Colapsible";
 
 import './App.css'
+import MedicalCalendar from "src/components/calendar/MedicalCalendar";
 
 const App = () => {
 

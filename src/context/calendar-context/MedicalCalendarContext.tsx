@@ -1,6 +1,5 @@
-import React, {createContext, FC, PropsWithChildren, ReactNode, useState} from "react";
+import React, {createContext, FC, PropsWithChildren} from "react";
 import {CalendarContextType, CalendarEvent} from "src/models/Models";
-import eventList from "src/components/day-events/EventList";
 
 export const MedicalCalendarContext = createContext<CalendarContextType | null>(null)
 

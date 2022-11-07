@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 import moment from "moment";
 import DropdownList from "react-widgets/DropdownList";
@@ -24,13 +24,13 @@ const AddEvent = ({selectedDate}: Props) => {
     const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
     const [type, setType] = useState("")
     const [watch, setWatch] = useState("")
-    const [watches, setWatches] = useState([])
+    const [watches, setWatches] = useState<CalendarEventWatch[]>([])
 
     function clearMorningEvents() {
         return events.filter((current) => {
                 let mCurrDate = moment(current.Date)
                 let mSelectedDate = moment(selectedDate)
-                return !mCurrDate.isSame(mSelectedDate) || current.watch.id !== 'manha'
+                return !mCurrDate.isSame(mSelectedDate) || current.Type !== 'manha'
             }
         )
     }
@@ -49,7 +49,7 @@ const AddEvent = ({selectedDate}: Props) => {
         }
 
         localStorage.setItem("events", JSON.stringify([...eventList, event]))
-        saveEvents(JSON.parse(localStorage.getItem('events')))
+        saveEvents(JSON.parse(localStorage.getItem('events')!))
     }
 
     const clearDay = () => {
@@ -60,13 +60,13 @@ const AddEvent = ({selectedDate}: Props) => {
             return !mCurrDate.isSame(mSelectedDate)
         })
         localStorage.setItem("events", JSON.stringify([...newContext]))
-        saveEvents(JSON.parse(localStorage.getItem('events')))
+        saveEvents(JSON.parse(localStorage.getItem('events')!))
     }
 
     let formattedDate = moment(selectedDate).format('DD/MM/YYYY');
 
     const filterWatches = (typeId:string) => {
-        let list = []
+        let list = new Array<CalendarEventWatch>()
         if( typeId === 'Enf') {
             list.push({id: 'manha', name: 'Manhã'})
         } else if (typeId === 'Amb') {

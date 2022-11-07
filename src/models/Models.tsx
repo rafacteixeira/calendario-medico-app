@@ -20,8 +20,8 @@ export class CalendarEventWatch {
 
 export interface CalendarEvent {
     Date: Date
-    type: CalendarEventType
-    watch: CalendarEventWatch
+    Type: string
+    Watch: string
 }
 
 export type CalendarContextType = {

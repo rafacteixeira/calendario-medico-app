@@ -1,13 +1,14 @@
 import React from "react";
 import EventList from "./EventList";
 import './day-event.css'
+import {CalendarEvent} from "src/models/Models";
 
-const EventBlock = ({events}) => {
+const EventBlock = ({events}:{events:CalendarEvent[]}) => {
   return (
     <div className='dailyEventList'>
-      <EventList events={events} watch='manha'/>
-      <EventList events={events} watch='tarde'/>
-      <EventList events={events} watch='noite'/>
+      <EventList eventList={events} watch='manha'/>
+      <EventList eventList={events} watch='tarde'/>
+      <EventList eventList={events} watch='noite'/>
     </div>
   )
 }

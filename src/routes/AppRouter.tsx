@@ -6,7 +6,7 @@ const AppRouter = () => {
   return (
     <Router basename='/calendario-medico'>
       <Routes>
-        <Route exact path="/" element={<App/>}/>
+        <Route path="/" element={<App/>}/>
       </Routes>
     </Router>
   )

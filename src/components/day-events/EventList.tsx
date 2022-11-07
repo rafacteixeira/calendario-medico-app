@@ -1,22 +1,24 @@
 import React, {useContext} from "react";
 import './day-event.css';
 import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
+import {CalendarContextType, CalendarEvent} from "src/models/Models";
 
-const EventList = ({events, watch}) => {
+const EventList = ({eventList, watch}:{eventList:CalendarEvent[], watch:string}) => {
 
-  const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
+  const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
+  // const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
 
-  let filtered = events.filter((e) => e.Watch === watch)
+  let filtered = eventList ? eventList.filter((e) => e.Watch === watch) : []
 
-  function deleteEvent(event: {}){
+  function deleteEvent(event: CalendarEvent){
     let del = window.confirm(`Deseja remover o evento ${event.Type}?`)
     if (del) {
-      let filtered = mcContext.filter(
+      let filtered = events.filter(
         (e) => {
           return !(e.Date === event.Date && e.Type === event.Type && e.Watch === event.Watch);
         }
       );
-      setMcContext(filtered)
+      saveEvents(filtered)
       localStorage.setItem("events", JSON.stringify([...filtered]))
     }
   }
@@ -29,7 +31,7 @@ const EventList = ({events, watch}) => {
           return (
             <div
               key={e.Date + e.Type + e.Watch + Math.random()}
-              className={e.Type !== 'PosP' && e.Type !== 'Aula' ? e.Type + '-' + e.Watch : e.Type}>
+              className={e.Type !== 'PosP' && e.Type !== 'Aula' ? e.Type + '-' + e.Watch: e.Type}>
               <label className='eventLabels' onClick={() => deleteEvent(e)}>{e.Type}</label>
               <br/>
             </div>
