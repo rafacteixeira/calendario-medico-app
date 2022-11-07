@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import './day-event.css';
-import {MedicalCalendarContext} from "../../context/calendar-context/MedicalCalendarContext";
+import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 
 const EventList = ({events, watch}) => {
 
@@ -8,7 +8,7 @@ const EventList = ({events, watch}) => {
 
   let filtered = events.filter((e) => e.Watch === watch)
 
-  function deleteEvent(event){
+  function deleteEvent(event: {}){
     let del = window.confirm(`Deseja remover o evento ${event.Type}?`)
     if (del) {
       let filtered = mcContext.filter(

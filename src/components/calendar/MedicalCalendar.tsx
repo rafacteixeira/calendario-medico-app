@@ -1,36 +1,43 @@
 import React, {useContext, useEffect} from "react";
-import Calendar from "react-calendar";
+
 import moment from "moment";
-import {MedicalCalendarContext} from "../../context/calendar-context/MedicalCalendarContext";
+import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 import 'react-calendar/dist/Calendar.css';
 import EventBlock from "../day-events/EventBlock";
 import './Calendar.css'
+import {CalendarContextType, CalendarEvent} from "src/models/Models";
+import Calendar from "react-calendar";
 
-const MedicalCalendar = ({selectedDate, selectDate}) => {
-  const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
+type Props = {
+  selectedDate: Date,
+  selectDate: Function
+}
+
+const MedicalCalendar = ({selectedDate, selectDate} :Props) => {
+  const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('events'));
+    const items = JSON.parse(localStorage.getItem('events')!);
     if (items) {
-      setMcContext(items)
+      saveEvents(items)
     }
     // eslint-disable-next-line
   }, []);
 
 
-  function filterDateEvents(calendarDate) {
-    let events = [];
-    mcContext.forEach((current) => {
+  function filterDateEvents(calendarDate:moment.Moment) : CalendarEvent[] {
+    let eventList = new Array<CalendarEvent>()
+    events.forEach((current) => {
       let eventDate = moment(current.Date);
       if (calendarDate.isSame(eventDate, 'day')) {
-        events.push(current)
+        eventList.push(current)
       }
     })
 
-    return events;
+    return eventList;
   }
 
-  function renderEvents({date, view}) {
+  function renderEvents({date, view}:{date:Date, view: any}): JSX.Element {
     if (view === "month") {
       const currentDate = moment(date);
       let dayEvents = filterDateEvents(currentDate)
@@ -38,6 +45,7 @@ const MedicalCalendar = ({selectedDate, selectDate}) => {
         return <EventBlock events={dayEvents}/>;
       }
     }
+    return <div/>;
   }
 
   return (
@@ -47,7 +55,7 @@ const MedicalCalendar = ({selectedDate, selectDate}) => {
         defaultView="month"
         tileContent={renderEvents}
         value={selectedDate}
-        onChange={(e) => {
+        onChange={(e: Date) => {
           selectDate(e)
         }}
         tileClassName='calendarTile'
