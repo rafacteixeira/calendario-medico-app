@@ -7,6 +7,7 @@ import EventBlock from "../day-events/EventBlock";
 import './Calendar.css'
 import {CalendarContextType, CalendarEvent} from "src/models/Models";
 import Calendar from "react-calendar";
+import {CalendarViewType, LocalStorageKeys, MomentGranularity} from "src/enums/enums";
 
 type Props = {
   selectedDate: Date,
@@ -17,7 +18,7 @@ const MedicalCalendar = ({selectedDate, selectDate} :Props) => {
   const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('events')!);
+    const items = JSON.parse(localStorage.getItem(LocalStorageKeys.events)!);
     if (items) {
       saveEvents(items)
     }
@@ -29,7 +30,7 @@ const MedicalCalendar = ({selectedDate, selectDate} :Props) => {
     let eventList = new Array<CalendarEvent>()
     events.forEach((current) => {
       let eventDate = moment(current.Date);
-      if (calendarDate.isSame(eventDate, 'day')) {
+      if (calendarDate.isSame(eventDate, MomentGranularity.day)) {
         eventList.push(current)
       }
     })
@@ -37,8 +38,8 @@ const MedicalCalendar = ({selectedDate, selectDate} :Props) => {
     return eventList;
   }
 
-  function renderEvents({date, view}:{date:Date, view: any}): JSX.Element {
-    if (view === "month") {
+  function renderEvents({date, view}:{date:Date, view: string}): JSX.Element {
+    if (view === CalendarViewType.month) {
       const currentDate = moment(date);
       let dayEvents = filterDateEvents(currentDate)
       if (dayEvents && dayEvents.length > 0) {

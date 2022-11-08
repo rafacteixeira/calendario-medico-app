@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import './day-event.css';
 import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 import {CalendarContextType, CalendarEvent} from "src/models/Models";
+import {EventTypeId, LocalStorageKeys} from "src/enums/enums";
 
 type EventListProps = {
   eventList:CalendarEvent[]
@@ -24,7 +25,7 @@ const EventList = ({eventList, watch}: EventListProps) => {
         }
       );
       saveEvents(filtered)
-      localStorage.setItem("events", JSON.stringify([...filtered]))
+      localStorage.setItem(LocalStorageKeys.events, JSON.stringify([...filtered]))
     }
   }
 
@@ -36,7 +37,7 @@ const EventList = ({eventList, watch}: EventListProps) => {
           return (
             <div
               key={e.Date + e.Type + e.Watch + Math.random()}
-              className={e.Type !== 'PosP' && e.Type !== 'Aula' ? e.Type + '-' + e.Watch: e.Type}>
+              className={e.Type !== EventTypeId.posp && e.Type !== EventTypeId.aula ? e.Type + '-' + e.Watch: e.Type}>
               <label className='eventLabels' onClick={() => deleteEvent(e)}>{e.Type}</label>
               <br/>
             </div>
