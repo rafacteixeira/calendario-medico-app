@@ -116,7 +116,7 @@ const AddEvent = ({selectedDate}: Props) => {
                     />
                 </div>
                 <div className="actionsCentered">
-                    <button className="button clear-input" type="button" onClick={() => clearDay()}>Limpar Dia
+                    <button className="button clear-input" type="button" onClick={clearDay}>Limpar Dia
                     </button>
                     <button className="button save-input" type="button" onClick={() => addEvent()}>Salvar
                     </button>
