@@ -3,7 +3,12 @@ import './day-event.css';
 import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 import {CalendarContextType, CalendarEvent} from "src/models/Models";
 
-const EventList = ({eventList, watch}:{eventList:CalendarEvent[], watch:string}) => {
+type EventListProps = {
+  eventList:CalendarEvent[]
+  watch: 'manha' | 'tarde' | 'noite'
+}
+
+const EventList = ({eventList, watch}: EventListProps) => {
 
   const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
   // const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
