@@ -1,9 +1,9 @@
 export enum EventTypeId {
-   pla = 'Pla',
-   enf = 'Enf',
-   amb = 'Amb',
-   aula = 'Aula',
-   posp= 'PosP',
+    pla = 'Pla',
+    enf = 'Enf',
+    amb = 'Amb',
+    aula = 'Aula',
+    posp = 'PosP',
 }
 
 export enum EventTypeDesc {
@@ -11,7 +11,7 @@ export enum EventTypeDesc {
     enf = 'Enfermaria',
     amb = 'Ambulatório',
     aula = 'Aula',
-    posp= 'Pós Plantão',
+    posp = 'Pós Plantão',
 }
 
 export enum EventWatchId {
@@ -31,7 +31,8 @@ export enum CalendarViewType {
 }
 
 export enum LocalStorageKeys {
-    events = 'events'
+    events = 'events',
+    notes = 'notes'
 }
 
 export enum MomentGranularity {
