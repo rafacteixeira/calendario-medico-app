@@ -1,7 +1,7 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 
 import moment from "moment";
-import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
+import {useMedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 import 'react-calendar/dist/Calendar.css';
 import EventBlock from "../day-events/EventBlock";
 import './Calendar.css'
@@ -15,7 +15,7 @@ type Props = {
 }
 
 const MedicalCalendar = ({selectedDate, selectDate} :Props) => {
-  const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
+  const {events, saveEvents} = useMedicalCalendarContext() as CalendarContextType
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem(LocalStorageKeys.events)!);

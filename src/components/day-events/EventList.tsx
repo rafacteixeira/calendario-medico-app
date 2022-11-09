@@ -1,6 +1,6 @@
-import React, {useContext} from "react";
+import React from "react";
 import './day-event.css';
-import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
+import {useMedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 import {CalendarContextType, CalendarEvent} from "src/models/Models";
 import {EventTypeId, LocalStorageKeys} from "src/enums/enums";
 
@@ -11,8 +11,7 @@ type EventListProps = {
 
 const EventList = ({eventList, watch}: EventListProps) => {
 
-  const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
-  // const [mcContext, setMcContext] = useContext(MedicalCalendarContext)
+  const {events, saveEvents} = useMedicalCalendarContext() as CalendarContextType
 
   let filtered = eventList ? eventList.filter((e) => e.Watch === watch) : []
 

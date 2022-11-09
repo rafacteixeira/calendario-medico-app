@@ -1,11 +1,11 @@
-import React, {useContext, useState} from "react";
-import {MedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
+import React, {useState} from "react";
+import {useMedicalCalendarContext} from "src/context/calendar-context/MedicalCalendarContext";
 import moment from "moment";
 import DropdownList from "react-widgets/DropdownList";
 import "react-widgets/styles.css";
 import "./add-event.css"
-import {CalendarContextType, CalendarEventType, CalendarEventWatch} from "src/models/Models";
-import {EventTypeDesc, EventTypeId, EventWatchDesc, EventWatchId, LocalStorageKeys} from "src/enums/enums";
+import {CalendarContextType, CalendarEventType, CalendarEventWatch, WatchesPerEventType} from "src/models/Models";
+import {EventTypeDesc, EventTypeId, EventWatchId, LocalStorageKeys} from "src/enums/enums";
 
 type Props = {
     selectedDate: Date
@@ -22,7 +22,7 @@ const types = [
 const DATE_FORMAT = 'DD/MM/YYYY';
 const AddEvent = ({selectedDate}: Props) => {
 
-    const {events, saveEvents} = useContext(MedicalCalendarContext) as CalendarContextType
+    const {events, saveEvents} = useMedicalCalendarContext() as CalendarContextType
     const [type, setType] = useState("")
     const [watch, setWatch] = useState("")
     const [watches, setWatches] = useState<CalendarEventWatch[]>([])
@@ -31,26 +31,40 @@ const AddEvent = ({selectedDate}: Props) => {
         return events.filter((current) => {
                 let mCurrDate = moment(current.Date)
                 let mSelectedDate = moment(selectedDate)
-                return !mCurrDate.isSame(mSelectedDate) || current.Type !== EventWatchId.manha
+                return !mCurrDate.isSame(mSelectedDate) || current.Watch !== EventWatchId.manha
             }
         )
     }
 
-    const addEvent = () => {
-        let event = {
-            Date: selectedDate,
-            Type: type,
-            Watch: watch
-        }
-        let eventList
-        if (event.Type === EventTypeId.posp) {
-            eventList = clearMorningEvents()
-        } else {
-            eventList = [...events]
-        }
+    function checkIfAvailableWatch(type: string, watch: string) {
 
-        localStorage.setItem(LocalStorageKeys.events, JSON.stringify([...eventList, event]))
-        saveEvents(JSON.parse(localStorage.getItem(LocalStorageKeys.events)!))
+        const watchList = WatchesPerEventType[type];
+
+        let found = watchList.find((current:CalendarEventWatch) => {
+            return current.id === watch
+        });
+
+        return found !== undefined;
+    }
+
+    const addEvent = () => {
+        if(type && watch
+            && checkIfAvailableWatch(type, watch)) {
+            let event = {
+                Date: selectedDate,
+                Type: type,
+                Watch: watch
+            }
+            let eventList
+            if (event.Type === EventTypeId.posp) {
+                eventList = clearMorningEvents()
+            } else {
+                eventList = [...events]
+            }
+
+            localStorage.setItem(LocalStorageKeys.events, JSON.stringify([...eventList, event]))
+            saveEvents(JSON.parse(localStorage.getItem(LocalStorageKeys.events)!))
+        }
     }
 
     const clearDay = () => {
@@ -67,18 +81,6 @@ const AddEvent = ({selectedDate}: Props) => {
     let formattedDate = moment(selectedDate).format(DATE_FORMAT);
 
     const filterWatches = (typeId: string) => {
-        let manha = new CalendarEventWatch(EventWatchId.manha, EventWatchDesc.manha);
-        let tarde = new CalendarEventWatch(EventWatchId.tarde, EventWatchDesc.tarde);
-        let noite = new CalendarEventWatch(EventWatchId.noite, EventWatchDesc.noite);
-
-        const WatchesPerEventType: Record<string, CalendarEventWatch[]> = {
-            Enf: [manha],
-            Amb: [manha, tarde],
-            Aula: [manha],
-            Pla: [manha, noite],
-            PosP: [noite]
-        }
-
         let list = WatchesPerEventType[typeId]
         setWatches(list)
     }
