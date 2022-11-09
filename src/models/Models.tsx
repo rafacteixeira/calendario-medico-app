@@ -42,3 +42,21 @@ export const WatchesPerEventType: Record<string, CalendarEventWatch[]> = {
     Pla: [manha, noite],
     PosP: [manha]
 }
+
+export class Note {
+    id: number
+    date: Date | null
+    txt: string | null
+
+    constructor(date:Date, note: string) {
+        this.id = Math.random() * 100000
+        this.date = date
+        this.txt = note
+    }
+}
+
+export type NotesContextType = {
+    notes: Note[]
+    saveNotes: (e: Note[]) => void
+    // addNote: (e: Note) => void
+}
