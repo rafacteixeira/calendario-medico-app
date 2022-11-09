@@ -6,6 +6,7 @@ import "react-widgets/styles.css";
 import "./add-event.css"
 import {CalendarContextType, CalendarEventType, CalendarEventWatch, WatchesPerEventType} from "src/models/Models";
 import {EventTypeDesc, EventTypeId, EventWatchId, LocalStorageKeys} from "src/enums/enums";
+import {DATE_FORMAT} from "src/Constants";
 
 type Props = {
     selectedDate: Date
@@ -19,7 +20,6 @@ const types = [
     new CalendarEventType(EventTypeId.aula, EventTypeDesc.aula),
 ];
 
-const DATE_FORMAT = 'DD/MM/YYYY';
 const AddEvent = ({selectedDate}: Props) => {
 
     const {events, saveEvents} = useMedicalCalendarContext() as CalendarContextType

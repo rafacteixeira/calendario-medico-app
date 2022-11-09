@@ -3,6 +3,7 @@ import {Note} from "src/models/Models";
 import {LocalStorageKeys} from "src/enums/enums";
 import {useEffect} from "react";
 import moment from "moment/moment";
+import {DATE_FORMAT} from "src/Constants";
 
 const NotesPanel = () => {
     const {notes, saveNotes} = useNotesContext()
@@ -26,7 +27,7 @@ const NotesPanel = () => {
         if (notes && notes.length > 0) {
             notes.map(
                 (current: Note): void => {
-                    let formattedDate = moment(current.date).format('DD/MM/YYYY');
+                    let formattedDate = moment(current.date).format(DATE_FORMAT);
                     noteList.push(
                         <li onClick={() => deleteNote(current.id)}>
                             {formattedDate! + " - " + current.txt}
