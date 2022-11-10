@@ -10,7 +10,9 @@ const NotesPanel = () => {
 
     useEffect(() => {
         const items:Note[] = JSON.parse(localStorage.getItem(LocalStorageKeys.notes)!);
-        saveNotes(items)
+        if (items) {
+            saveNotes(items)
+        }
         // eslint-disable-next-line
     }, [])
 
