@@ -32,7 +32,9 @@ const AddNote = () => {
 
     const saveNote = () => {
         if (noteDate && noteText) {
-            let newList = [...notes, new Note(noteDate, noteText)];
+            let newList = [...notes, new Note(noteDate, noteText)].sort((a:Note, b:Note):number => {
+                return a.date === b.date ? 0 : a.date! > b.date! ? 1 : -1
+            })
             saveNotes(newList)
             localStorage.setItem(LocalStorageKeys.notes, JSON.stringify(newList))
         }
