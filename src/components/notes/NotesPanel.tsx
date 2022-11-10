@@ -11,21 +11,23 @@ const NotesPanel = () => {
     useEffect(() => {
         const items:Note[] = JSON.parse(localStorage.getItem(LocalStorageKeys.notes)!);
         saveNotes(items)
+        // eslint-disable-next-line
     }, [])
 
 
     function deleteNote(noteId: number) {
-        notes.filter((current: Note) => {
+        let filtered = notes.filter((current: Note) => {
             return current.id !== noteId
         })
-        saveNotes(notes)
-        localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([...notes]))
+        saveNotes(filtered)
+        localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([...filtered]))
     }
 
     const listNotes = (): JSX.Element[] => {
         const noteList: JSX.Element[] = []
         if (notes && notes.length > 0) {
             notes.map(
+                // eslint-disable-next-line
                 (current: Note): void => {
                     let formattedDate = moment(current.date).format(DATE_FORMAT);
                     noteList.push(
