@@ -6,8 +6,8 @@ export const NotesContext = createContext<NotesContextType | null>(null)
 const NotesContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [notes, setNotes] = React.useState<Note[]>([]);
 
-    const saveNotes = (eventList: Note[]): void => {
-        setNotes([...eventList])
+    const saveNotes = (notes: Note[]): void => {
+        setNotes([...notes])
     }
 
     return (
