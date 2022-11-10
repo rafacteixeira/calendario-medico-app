@@ -18,11 +18,14 @@ const NotesPanel = () => {
 
 
     function deleteNote(noteId: number) {
-        let filtered = notes.filter((current: Note) => {
-            return current.id !== noteId
-        })
-        saveNotes(filtered)
-        localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([...filtered]))
+        let del = window.confirm(`Deseja remover a Nota?`)
+        if(del) {
+            let filtered = notes.filter((current: Note) => {
+                return current.id !== noteId
+            })
+            saveNotes(filtered)
+            localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([...filtered]))
+        }
     }
 
     const listNotes = (): JSX.Element[] => {
