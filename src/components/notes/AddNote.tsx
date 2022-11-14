@@ -26,8 +26,11 @@ const AddNote = () => {
     }
 
     const clearNotes = () => {
-        saveNotes([])
-        localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([]))
+        let del = window.confirm(`Deseja remover TODAS as notas?`)
+        if (del) {
+            saveNotes([])
+            localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([]))
+        }
     }
 
     const saveNote = () => {
