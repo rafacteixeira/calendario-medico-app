@@ -6,8 +6,11 @@ import {LocalStorageKeys} from "src/enums/enums";
 
 import './add-note.css'
 import "react-widgets/styles.css";
+import {postPrivate} from "src/utils/RequestUtils";
+import {useAuthContext} from "src/context/auth-context/AuthContext";
 
 const AddNote = () => {
+    const {token, } = useAuthContext()
     const {notes, saveNotes} = useNotesContext()
     const [noteDate, setNoteDate] = useState(new Date())
     const [noteText, setNoteTextText] = useState("")
@@ -43,6 +46,14 @@ const AddNote = () => {
         }
     }
 
+    const backup = async () => {
+        let request = {
+            "Notes" : notes,
+        }
+        console.log(request)
+        await postPrivate(token, "/private/note/save", request)
+    }
+
     return (
         <div>
             <form className="addNotesForm">
@@ -60,6 +71,8 @@ const AddNote = () => {
                     <button className="button clear-input" type="button" onClick={clearNotes}>Limpar Notas
                     </button>
                     <button className="button save-input" type="button" onClick={saveNote}>Adicionar Nota
+                    </button>
+                    <button className="button save-input" type="button" onClick={backup}>Backup
                     </button>
                 </div>
             </form>

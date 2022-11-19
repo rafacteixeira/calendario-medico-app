@@ -6,6 +6,8 @@ import "react-widgets/styles.css";
 import "./add-event.css"
 import {CalendarContextType, CalendarEventType, CalendarEventWatch, WatchesPerEventType} from "src/models/Models";
 import {EventTypeDesc, EventTypeId, EventWatchId, LocalStorageKeys} from "src/enums/enums";
+import {useAuthContext} from "src/context/auth-context/AuthContext";
+import {postPrivate} from "src/utils/RequestUtils";
 
 type Props = {
     selectedDate: Date
@@ -21,7 +23,7 @@ const types = [
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 const AddEvent = ({selectedDate}: Props) => {
-
+    const {token, } = useAuthContext()
     const {events, saveEvents} = useMedicalCalendarContext() as CalendarContextType
     const [type, setType] = useState("")
     const [watch, setWatch] = useState("")
@@ -85,6 +87,14 @@ const AddEvent = ({selectedDate}: Props) => {
         setWatches(list)
     }
 
+    const backup = async () => {
+        let request = {
+            "Events" : events,
+        }
+        console.log(request)
+        await postPrivate(token, "/private/event/save", request)
+    }
+
 
     return (
         <div>
@@ -123,6 +133,8 @@ const AddEvent = ({selectedDate}: Props) => {
                     <button className="button clear-input" type="button" onClick={clearDay}>Limpar Dia
                     </button>
                     <button className="button save-input" type="button" onClick={addEvent}>Salvar
+                    </button>
+                    <button className="button save-input" type="button" onClick={backup}>Backup
                     </button>
                 </div>
             </form>

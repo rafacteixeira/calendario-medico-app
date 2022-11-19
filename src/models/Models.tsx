@@ -58,5 +58,9 @@ export class Note {
 export type NotesContextType = {
     notes: Note[]
     saveNotes: (e: Note[]) => void
-    // addNote: (e: Note) => void
+}
+
+export type AuthContextType = {
+    token: string | null
+    setToken: (e: string | null) => void
 }
