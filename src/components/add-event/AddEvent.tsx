@@ -92,14 +92,6 @@ const AddEvent = ({selectedDate}: Props) => {
         setWatches(list)
     }
 
-    const backup = async () => {
-        let request = {
-            "Events": events,
-        }
-        await postPrivate(token, "/private/event/save", request)
-    }
-
-
     return (
         <div>
             <form className="addForm">
@@ -141,8 +133,6 @@ const AddEvent = ({selectedDate}: Props) => {
                     <button className="button clear-input" type="button" onClick={clearDay}>Limpar Dia
                     </button>
                     <button className="button save-input" type="button" onClick={addEvent}>Salvar
-                    </button>
-                    <button className="button save-input" type="button" onClick={backup}>Backup
                     </button>
                 </div>
             </form>

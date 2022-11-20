@@ -52,14 +52,6 @@ const AddNote = () => {
         })
     }
 
-    const backup = async () => {
-        let clearNotes = clearNoteId(notes)
-        let request = {
-            "Notes": clearNotes,
-        }
-        await postPrivate(token, "/private/note/save", request)
-    }
-
     return (
         <div>
             <form className="addNotesForm">
@@ -77,8 +69,6 @@ const AddNote = () => {
                     <button className="button clear-input" type="button" onClick={clearNotes}>Limpar Notas
                     </button>
                     <button className="button save-input" type="button" onClick={saveNote}>Adicionar Nota
-                    </button>
-                    <button className="button save-input" type="button" onClick={backup}>Backup
                     </button>
                 </div>
             </form>
