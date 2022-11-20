@@ -12,7 +12,7 @@ WORKDIR /app/frontend
 RUN npm install --silent
 RUN npm install -g serve --silent
 RUN npm run build
-ENV REACT_APP_SCM_API_BASE_URL=$REACT_APP_SCM_API_BASE_URL
+ENV REACT_APP_SCM_API_BASE_URL="https://calendario-medico-api.herokuapp.com"
 ENV HTTPS=true
 
 EXPOSE 3000
