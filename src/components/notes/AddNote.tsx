@@ -10,12 +10,12 @@ import {postPrivate} from "src/utils/RequestUtils";
 import {useAuthContext} from "src/context/auth-context/AuthContext";
 
 const AddNote = () => {
-    const {token, } = useAuthContext()
+    const {token,} = useAuthContext()
     const {notes, saveNotes} = useNotesContext()
     const [noteDate, setNoteDate] = useState(new Date())
     const [noteText, setNoteTextText] = useState("")
 
-    const ondDateChange = (date:Date | null | undefined) => {
+    const ondDateChange = (date: Date | null | undefined) => {
         if (date) {
             console.log("test")
             setNoteDate(date)
@@ -38,7 +38,7 @@ const AddNote = () => {
 
     const saveNote = () => {
         if (noteDate && noteText) {
-            let newList = [...notes, new Note(noteDate, noteText)].sort((a:Note, b:Note):number => {
+            let newList = [...notes, new Note(noteDate, noteText)].sort((a: Note, b: Note): number => {
                 return a.date === b.date ? 0 : a.date! > b.date! ? 1 : -1
             })
             saveNotes(newList)
@@ -46,9 +46,17 @@ const AddNote = () => {
         }
     }
 
+    function clearNoteId(notes: Note[]) {
+        return notes.map(n => {
+            n.id = 0
+            return n
+        })
+    }
+
     const backup = async () => {
+        let clearNotes = clearNoteId(notes)
         let request = {
-            "Notes" : notes,
+            "Notes": clearNotes,
         }
         console.log(request)
         await postPrivate(token, "/private/note/save", request)
