@@ -81,11 +81,7 @@ const AddEvent = ({selectedDate}: Props) => {
             let mSelectedDate = moment(selectedDate).format(DATE_FORMAT)
 
             let filtered = mCurrDate !== mSelectedDate;
-
-            console.log(mSelectedDate, mCurrDate, filtered)
-
             if (!filtered) {
-                console.log("clearDay")
                 deletePrivate(token!, "/private/event", current).then(null, null)
             }
             return filtered
