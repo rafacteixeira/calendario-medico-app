@@ -29,6 +29,20 @@ export const postPrivate = async (token: string | null, path: string, obj: any) 
         throw new Error("invalid token. login again")
     }
 }
+export const deletePrivate = async (token: string | null, path: string, obj: any) => {
+    if (await checkToken(token!)) {
+        await fetch(baseUrl + path, {
+            method: 'DELETE',
+            headers: {
+                Authorization: token!,
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        })
+    } else {
+        throw new Error("invalid token. login again")
+    }
+}
 
 export const getPublic = async (path: string) => {
     const res = await fetch(baseUrl + path, {
@@ -62,7 +76,6 @@ const checkToken = async (token: string) => {
         }
     })
     const json = await res.json()
-    console.log(json)
     return json.Valid
 }
 

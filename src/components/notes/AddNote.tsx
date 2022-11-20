@@ -17,7 +17,6 @@ const AddNote = () => {
 
     const ondDateChange = (date: Date | null | undefined) => {
         if (date) {
-            console.log("test")
             setNoteDate(date)
         } else {
             throw new Error("DateChangeError - should not be empty")
@@ -58,7 +57,6 @@ const AddNote = () => {
         let request = {
             "Notes": clearNotes,
         }
-        console.log(request)
         await postPrivate(token, "/private/note/save", request)
     }
 

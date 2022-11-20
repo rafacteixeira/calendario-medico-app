@@ -7,7 +7,7 @@ import "./add-event.css"
 import {CalendarContextType, CalendarEventType, CalendarEventWatch, WatchesPerEventType} from "src/models/Models";
 import {EventTypeDesc, EventTypeId, EventWatchId, LocalStorageKeys} from "src/enums/enums";
 import {useAuthContext} from "src/context/auth-context/AuthContext";
-import {postPrivate} from "src/utils/RequestUtils";
+import {deletePrivate, postPrivate} from "src/utils/RequestUtils";
 
 type Props = {
     selectedDate: Date
@@ -23,7 +23,7 @@ const types = [
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 const AddEvent = ({selectedDate}: Props) => {
-    const {token, } = useAuthContext()
+    const {token,} = useAuthContext()
     const {events, saveEvents} = useMedicalCalendarContext() as CalendarContextType
     const [type, setType] = useState("")
     const [watch, setWatch] = useState("")
@@ -33,7 +33,12 @@ const AddEvent = ({selectedDate}: Props) => {
         return events.filter((current) => {
                 let mCurrDate = moment(current.Date)
                 let mSelectedDate = moment(selectedDate)
-                return !mCurrDate.isSame(mSelectedDate) || current.Watch !== EventWatchId.manha
+
+                let keep = !mCurrDate.isSame(mSelectedDate) || current.Watch !== EventWatchId.manha
+                if (!keep) {
+                    deletePrivate(token!, "/private/event", current).then(null, null)
+                }
+                return keep
             }
         )
     }
@@ -42,15 +47,15 @@ const AddEvent = ({selectedDate}: Props) => {
 
         const watchList = WatchesPerEventType[type];
 
-        let found = watchList.find((current:CalendarEventWatch) => {
+        let found = watchList.find((current: CalendarEventWatch) => {
             return current.id === watch
         });
 
         return found !== undefined;
     }
 
-    const addEvent = () => {
-        if(type && watch
+    const addEvent = async () => {
+        if (type && watch
             && checkIfAvailableWatch(type, watch)) {
             let event = {
                 Date: selectedDate,
@@ -64,8 +69,8 @@ const AddEvent = ({selectedDate}: Props) => {
                 eventList = [...events]
             }
 
-            localStorage.setItem(LocalStorageKeys.events, JSON.stringify([...eventList, event]))
-            saveEvents(JSON.parse(localStorage.getItem(LocalStorageKeys.events)!))
+            let dbEvent = await postPrivate(token!, "/private/event", event)
+            saveEvents([...eventList, dbEvent])
         }
     }
 
@@ -89,9 +94,8 @@ const AddEvent = ({selectedDate}: Props) => {
 
     const backup = async () => {
         let request = {
-            "Events" : events,
+            "Events": events,
         }
-        console.log(request)
         await postPrivate(token, "/private/event/save", request)
     }
 
@@ -101,11 +105,11 @@ const AddEvent = ({selectedDate}: Props) => {
             <form className="addForm">
                 <div className="inputWrapper">
                     <div className="dateLabel">
-                    <b><label>Data: {formattedDate} </label></b>
+                        <b><label>Data: {formattedDate} </label></b>
                     </div>
                     <br/>
                     <div className="dateLabel">
-                    <label>Altere a data clicando no calendário abaixo</label>
+                        <label>Altere a data clicando no calendário abaixo</label>
                     </div>
                 </div>
                 <div className="inputWrapper">
