@@ -38,3 +38,12 @@ input {
 .inputWrapper {
     padding-top: 1rem;
 }
+
+.inputLabel {
+    width: 10%;
+}
+
+.dateLabel {
+    width: 100%;
+    display: block;
+}

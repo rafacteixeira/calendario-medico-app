@@ -1,3 +1,4 @@
+// const baseUrl = "https://calendario-medico-api.herokuapp.com";
 const baseUrl = process.env.REACT_APP_SCM_API_BASE_URL;
 
 export const getPrivate = async (token: string, path:string) => {
@@ -40,6 +41,12 @@ export const postPublic = async (path:string, obj: any) => {
         body: JSON.stringify(obj)
     })
     return res.json()
+}
+
+export const logout = async (token:string) => {
+    await fetch(baseUrl + "/logout?token=" +token,{
+        method: 'POST'
+    })
 }
 
 

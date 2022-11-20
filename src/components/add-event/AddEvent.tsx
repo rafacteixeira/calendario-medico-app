@@ -100,12 +100,16 @@ const AddEvent = ({selectedDate}: Props) => {
         <div>
             <form className="addForm">
                 <div className="inputWrapper">
+                    <div className="dateLabel">
                     <b><label>Data: {formattedDate} </label></b>
+                    </div>
                     <br/>
+                    <div className="dateLabel">
                     <label>Altere a data clicando no calendário abaixo</label>
+                    </div>
                 </div>
                 <div className="inputWrapper">
-                    <label>Tipo:</label>
+                    <div className="inputLabel"><label>Tipo:</label></div>
                     <DropdownList
                         defaultValue={type}
                         data={types}
@@ -118,7 +122,7 @@ const AddEvent = ({selectedDate}: Props) => {
                     />
                 </div>
                 <div className="inputWrapper">
-                    <label>Turno:</label>
+                    <div className="inputLabel"><label>Turno:</label></div>
                     <DropdownList
                         defaultValue={watch}
                         data={watches}
