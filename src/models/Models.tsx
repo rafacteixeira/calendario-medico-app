@@ -44,12 +44,12 @@ export const WatchesPerEventType: Record<string, CalendarEventWatch[]> = {
 }
 
 export class Note {
-    id: number
+    ID: number
     date: Date | null
     txt: string | null
 
     constructor(date:Date, note: string) {
-        this.id = Math.random() * 100000
+        this.ID = Math.random() * 100000
         this.date = date
         this.txt = note
     }

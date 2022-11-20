@@ -4,27 +4,37 @@ import {LocalStorageKeys} from "src/enums/enums";
 import {useEffect} from "react";
 import moment from "moment/moment";
 import {DATE_FORMAT} from "src/Constants";
+import {deletePrivate, getPrivate} from "src/utils/RequestUtils";
+import {useAuthContext} from "src/context/auth-context/AuthContext";
 
 const NotesPanel = () => {
     const {notes, saveNotes} = useNotesContext()
-
+    const {token, } = useAuthContext()
     useEffect(() => {
-        const items:Note[] = JSON.parse(localStorage.getItem(LocalStorageKeys.notes)!);
-        if (items) {
-            saveNotes(items)
+
+        const fetch = async () => {
+            const json = await getPrivate(token!,"/private/note")
+            console.log(json)
+            saveNotes([...json])
         }
+        fetch().then(null,null)
+
         // eslint-disable-next-line
     }, [])
 
 
     function deleteNote(noteId: number) {
+        console.log(noteId)
         let del = window.confirm(`Deseja remover a Nota?`)
         if(del) {
             let filtered = notes.filter((current: Note) => {
-                return current.id !== noteId
+                let filtered = current.ID !== noteId;
+                if (!filtered) {
+                    deletePrivate(token!, "/private/note", current).then(null, null)
+                }
+                return filtered
             })
-            saveNotes(filtered)
-            localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([...filtered]))
+            saveNotes([...filtered])
         }
     }
 
@@ -34,9 +44,10 @@ const NotesPanel = () => {
             notes.map(
                 // eslint-disable-next-line
                 (current: Note): void => {
+
                     let formattedDate = moment(current.date).format(DATE_FORMAT);
                     noteList.push(
-                        <li onClick={() => deleteNote(current.id)}>
+                        <li onClick={() => deleteNote(current.ID)}>
                             {formattedDate! + " - " + current.txt}
                         </li>
                     )

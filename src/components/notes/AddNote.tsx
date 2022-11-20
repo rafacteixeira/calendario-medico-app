@@ -7,6 +7,7 @@ import {LocalStorageKeys} from "src/enums/enums";
 import './add-note.css'
 import "react-widgets/styles.css";
 import {useAuthContext} from "src/context/auth-context/AuthContext";
+import {deletePrivate} from "src/utils/RequestUtils";
 
 const AddNote = () => {
     const {token,} = useAuthContext()
@@ -29,8 +30,10 @@ const AddNote = () => {
     const clearNotes = () => {
         let del = window.confirm(`Deseja remover TODAS as notas?`)
         if (del) {
+            notes.forEach((current:Note) => {
+                deletePrivate(token!, "/private/note", current).then(null, null)
+            })
             saveNotes([])
-            localStorage.setItem(LocalStorageKeys.notes, JSON.stringify([]))
         }
     }
 
