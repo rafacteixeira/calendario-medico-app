@@ -1,4 +1,4 @@
-const baseUrl = process.env.REACT_APP_SCM_API_BASE_URL;
+const baseUrl = "https://calendario-medico-api.herokuapp.com";
 
 export const getPrivate = async (token: string, path:string) => {
     const res = await fetch(baseUrl + path, {
