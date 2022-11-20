@@ -7,7 +7,9 @@ import EventBlock from "../day-events/EventBlock";
 import './Calendar.css'
 import {CalendarContextType, CalendarEvent} from "src/models/Models";
 import Calendar from "react-calendar";
-import {CalendarViewType, LocalStorageKeys, MomentGranularity} from "src/enums/enums";
+import {CalendarViewType, MomentGranularity} from "src/enums/enums";
+import {useAuthContext} from "../../context/auth-context/AuthContext";
+import {getPrivate} from "../../utils/RequestUtils";
 
 type Props = {
   selectedDate: Date,
@@ -16,12 +18,15 @@ type Props = {
 
 const MedicalCalendar = ({selectedDate, selectDate} :Props) => {
   const {events, saveEvents} = useMedicalCalendarContext() as CalendarContextType
+  const {token,} = useAuthContext()
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem(LocalStorageKeys.events)!);
-    if (items) {
-      saveEvents(items)
+
+    const fetch = async () => {
+      const json = await getPrivate(token!,"/private/event")
+      saveEvents([...json])
     }
+    fetch().then(null,null)
     // eslint-disable-next-line
   }, []);
 

@@ -6,7 +6,6 @@ import {LocalStorageKeys} from "src/enums/enums";
 
 import './add-note.css'
 import "react-widgets/styles.css";
-import {postPrivate} from "src/utils/RequestUtils";
 import {useAuthContext} from "src/context/auth-context/AuthContext";
 
 const AddNote = () => {
@@ -43,13 +42,6 @@ const AddNote = () => {
             saveNotes(newList)
             localStorage.setItem(LocalStorageKeys.notes, JSON.stringify(newList))
         }
-    }
-
-    function clearNoteId(notes: Note[]) {
-        return notes.map(n => {
-            n.id = 0
-            return n
-        })
     }
 
     return (

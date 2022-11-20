@@ -75,14 +75,22 @@ const AddEvent = ({selectedDate}: Props) => {
     }
 
     const clearDay = () => {
-        let newContext = events.filter((current) => {
-            let mCurrDate = moment(current.Date)
-            let mSelectedDate = moment(selectedDate)
 
-            return !mCurrDate.isSame(mSelectedDate)
+        let newContext = events.filter((current) => {
+            let mCurrDate = moment(current.Date).format(DATE_FORMAT)
+            let mSelectedDate = moment(selectedDate).format(DATE_FORMAT)
+
+            let filtered = mCurrDate !== mSelectedDate;
+
+            console.log(mSelectedDate, mCurrDate, filtered)
+
+            if (!filtered) {
+                console.log("clearDay")
+                deletePrivate(token!, "/private/event", current).then(null, null)
+            }
+            return filtered
         })
-        localStorage.setItem(LocalStorageKeys.events, JSON.stringify([...newContext]))
-        saveEvents(JSON.parse(localStorage.getItem(LocalStorageKeys.events)!))
+        saveEvents([...newContext])
     }
 
     let formattedDate = moment(selectedDate).format(DATE_FORMAT);
