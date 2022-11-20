@@ -5,7 +5,7 @@ import DropdownList from "react-widgets/DropdownList";
 import "react-widgets/styles.css";
 import "./add-event.css"
 import {CalendarContextType, CalendarEventType, CalendarEventWatch, WatchesPerEventType} from "src/models/Models";
-import {EventTypeDesc, EventTypeId, EventWatchId, LocalStorageKeys} from "src/enums/enums";
+import {EventTypeDesc, EventTypeId, EventWatchId} from "src/enums/enums";
 import {useAuthContext} from "src/context/auth-context/AuthContext";
 import {deletePrivate, postPrivate} from "src/utils/RequestUtils";
 

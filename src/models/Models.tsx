@@ -49,7 +49,7 @@ export class Note {
     txt: string | null
 
     constructor(date:Date, note: string) {
-        this.ID = Math.random() * 100000
+        this.ID = 0
         this.date = date
         this.txt = note
     }

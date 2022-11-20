@@ -1,6 +1,5 @@
 import {useNotesContext} from "src/context/notes-context/NotesContext";
 import {Note} from "src/models/Models";
-import {LocalStorageKeys} from "src/enums/enums";
 import {useEffect} from "react";
 import moment from "moment/moment";
 import {DATE_FORMAT} from "src/Constants";

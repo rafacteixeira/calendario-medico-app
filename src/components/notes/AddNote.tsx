@@ -2,12 +2,11 @@ import {useNotesContext} from "src/context/notes-context/NotesContext";
 import DatePicker from "react-widgets/DatePicker";
 import {Note} from "src/models/Models";
 import React, {useState} from "react";
-import {LocalStorageKeys} from "src/enums/enums";
 
 import './add-note.css'
 import "react-widgets/styles.css";
 import {useAuthContext} from "src/context/auth-context/AuthContext";
-import {deletePrivate} from "src/utils/RequestUtils";
+import {deletePrivate, postPrivate} from "src/utils/RequestUtils";
 
 const AddNote = () => {
     const {token,} = useAuthContext()
@@ -37,13 +36,16 @@ const AddNote = () => {
         }
     }
 
-    const saveNote = () => {
+    const saveNote = async () => {
         if (noteDate && noteText) {
-            let newList = [...notes, new Note(noteDate, noteText)].sort((a: Note, b: Note): number => {
+            let note = new Note(noteDate, noteText);
+            note = await postPrivate(token!, "/private/note", note)
+
+            let newList = [...notes, note].sort((a: Note, b: Note): number => {
                 return a.date === b.date ? 0 : a.date! > b.date! ? 1 : -1
             })
+
             saveNotes(newList)
-            localStorage.setItem(LocalStorageKeys.notes, JSON.stringify(newList))
         }
     }
 
